@@ -1,0 +1,314 @@
+﻿{
+    "ID": "do_RongCloud",
+    "IsContainer": "0",
+    "Type": "SM",
+    "Name": "融云",
+    "Version": "Internal",
+    "Description": "融云即时通信",
+    "Icon": "",
+    "IOS": {
+        "Support": 1,
+        "MinVersion": "7"
+    },
+    "Android": {
+        "Support": 1,
+        "MinVersion": "14"
+    },
+    "Windows": {
+        "Support": 0,
+        "MinVersion": ""
+    },
+    "WindowsPhone": {
+        "Support": 0,
+        "MinVersion": ""
+    },
+    "Html": {
+        "Support": 1,
+        "MinVersion": "5.0"
+    },
+    "Properties": [],
+    "Events": [
+               {
+               "ID": "message",
+               "Description": "接收到新消息触发事件",
+               "ReturnType": "Node",
+               "ReturnDesc": "返回的信息为{ conversationType : '所属会话类型', messageId : '消息的唯一id', fromUserId:'发送者id', sendTime : '发送时间', receiveTime : '接收时间' , messageType : '消息类型(text,location,file,image,voice)', messageContent : '消息内容'  }"
+               },
+               {
+               "ID": "userPortraitClick",
+               "Description": "头像点击事件",
+               "ReturnType": "Node",
+               "ReturnDesc": "返回的信息为{ conversationType : '当前所属会话类型', userId : '所点击头像的用户id',userName : '所点击头像的用户昵称'  }"
+               },
+               {
+               "ID": "messageClicked",
+               "Description": "点击通知消息触发",
+               "ReturnType": "Node",
+               "ReturnDesc": "{cType:'消息类型',fId:'发送者id',oName:'对象名称',tId:'接受者id',aps:'消息内容',oName:'对象名称'}"
+               }
+               ],
+    "syncMethodes": [
+                     {
+                     "ID": "setTitleBarColor",
+                     "Name": "设置标题栏颜色,不调用此方法默认标题栏颜色为蓝色",
+                     "Description": "",
+                     "ReturnType": "",
+                     "ReturnType_JavaScript": "",
+                     "ReturnDesc": "",
+                     "Paras": [
+                               {
+                               "ID": "color",
+                               "Name": "标题栏颜色",
+                               "Type": "String",
+                               "Type_JavaScript": "String",
+                               "Required": 1,
+                               "DefaultValue": "",
+                               "Description": ""
+                               }
+                               ]
+                     },
+                     {
+                     "ID": "setTitleColor",
+                     "Name": "设置标题颜色,不调用此方法默认标题颜色为白色",
+                     "Description": "",
+                     "ReturnType": "",
+                     "ReturnType_JavaScript": "",
+                     "ReturnDesc": "",
+                     "Paras": [
+                               {
+                               "ID": "color",
+                               "Name": "标题颜色",
+                               "Type": "String",
+                               "Type_JavaScript": "String",
+                               "Required": 1,
+                               "DefaultValue": "",
+                               "Description": ""
+                               }
+                               ]
+                     },
+                     {
+                     "ID": "getLatestMessage",
+                     "Name": "获取会话列表最新一条消息",
+                     "Description": "",
+                     "ReturnType": "Node",
+                     "ReturnType_JavaScript": "",
+                     "ReturnDesc": "返回格式为[{userId:'qwert',message:'123456',receivedTime:'1500346713',sentTime:'1500346715',isSend:true},{userId:'wwee',message:'erwere',receivedTime:'1500346713',sentTime:'1500346715',isSend:false}]，其中userId为消息用户id；message为消息内容，若为语言或图片消息时，仅返回[图片]或[语音]；receivedTime和sentTime为消息接收和发送的时间，类型为long型；isSend为消息是否发送成功，当最新一条消息为接收消息时，不返回该字段",
+                     "Paras": []
+                     },
+                     {
+                     "ID": "cacheUserInfo",
+                     "Name": "缓存用户信息",
+                     "Description": "本地持久化缓存用户信息",
+                     "ReturnType": "Boolean",
+                     "ReturnDesc": "缓存成功返回true，失败返回false",
+                     "Paras": [
+                               { "ID": "userId", "Name": "用户id", "Type": "String", "Type_JavaScript": "String", "Required": 1, "DefaultValue": "", "Description": "" }
+                               ,
+                               { "ID": "nickName", "Name": "昵称", "Type": "String", "Type_JavaScript": "String", "Required": 1, "DefaultValue": "", "Description": "" }
+                               ,
+                               
+                               { "ID": "headPortrait", "Name": "头像", "Type": "String", "Type_JavaScript": "String", "Required": 1, "DefaultValue": "", "Description": "支持本地文件,data:// source:// 打头的URI格式和网络图片" }
+                               ]
+                     },
+                     {
+                     "ID": "cacheGroupInfo",
+                     "Name": "缓存群组信息",
+                     "Description": "本地持久化缓存群组信息",
+                     "ReturnType": "Boolean",
+                     "ReturnDesc": "缓存成功返回true，失败返回false",
+                     "Paras": [
+                               { "ID": "groupId", "Name": "群组id", "Type": "String", "Type_JavaScript": "String", "Required": 1, "DefaultValue": "", "Description": "" }
+                               ,
+                               { "ID": "groupName", "Name": "群组名", "Type": "String", "Type_JavaScript": "String", "Required": 1, "DefaultValue": "", "Description": "" }
+                               ,
+                               
+                               { "ID": "headPortrait", "Name": "头像", "Type": "String", "Type_JavaScript": "String", "Required": 1, "DefaultValue": "", "Description": "支持本地文件,data:// source:// 打头的URI格式和网络图片" }
+                               ]
+                     }
+                     ],
+    "asyncMethodes": [
+                      {
+                      "ID": "login",
+                      "Name": "用户登录",
+                      "Description": "使用token登录",
+                      "ReturnType": "String",
+                      "ReturnType_JavaScript": "String",
+                      "ReturnDesc": "登录成功返回当前登录的用户id,登录失败返回错误信息",
+                      "Paras": [
+                                {
+                                "ID": "appKey",
+                                "Name": "融云上面申请的应用的App Key",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 1,
+                                "DefaultValue": "",
+                                "Description": ""
+                                },
+                                {
+                                "ID": "token",
+                                "Name": "身份认证",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 1,
+                                "DefaultValue": "",
+                                "Description": ""
+                                },
+                                {
+                                "ID": "extraData",
+                                "Name": "额外数据",
+                                "Type": "Node",
+                                "Type_JavaScript": "Node",
+                                "Required": 0,
+                                "DefaultValue": "",
+                                "Description": "仅支持Android平台，用来配置Android推送的一些数据，目前用到小米推送，集成后推送整体到达率会大大提升，格式为{'xiaomi':{'appId':'KWSFSKDFBKS','appKey':'DFGHFHFFRT'}}"
+                                }
+                                ]
+                      },
+                      {
+                      "ID": "openConversation",
+                      "Name": "打开单个会话",
+                      "Description": "根据用户id打开会话",
+                      "ReturnType": "",
+                      "ReturnType_JavaScript": "",
+                      "ReturnDesc": "",
+                      "Paras": [
+                                {
+                                "ID": "userId",
+                                "Name": "用户id",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 1,
+                                "DefaultValue": "",
+                                "Description": ""
+                                },
+                                {
+                                "ID": "title",
+                                "Name": "标题",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 1,
+                                "DefaultValue": "",
+                                "Description": "通常是用户名"
+                                },
+                                {
+                                "ID": "headPortrait",
+                                "Name": "用户头像",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 0,
+                                "DefaultValue": "",
+                                "Description": "支持本地文件,data:// source:// 打头的URI格式和网络图片,不写为默认头像"
+                                }
+                                ]
+                      },
+                      {
+                      "ID": "openConversationList",
+                      "Name": "打开会话列表",
+                      "Description": "",
+                      "ReturnType": "",
+                      "ReturnType_JavaScript": "",
+                      "ReturnDesc": "",
+                      "Paras": []
+                      },
+                      {
+                      "ID": "openGroupConversation",
+                      "Name": "打开群聊会话",
+                      "Description": "根据groupId打开会话",
+                      "ReturnType": "",
+                      "ReturnType_JavaScript": "",
+                      "ReturnDesc": "",
+                      "Paras": [
+                                {
+                                "ID": "groupId",
+                                "Name": "群组id",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 1,
+                                "DefaultValue": "",
+                                "Description": ""
+                                },
+                                {
+                                "ID": "title",
+                                "Name": "标题",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 1,
+                                "DefaultValue": "",
+                                "Description": "通常是群组名"
+                                }
+                                ]
+                      },
+                      {
+                      "ID": "setUserInfo",
+                      "Name": "设置当前用户信息",
+                      "Description": "",
+                      "ReturnType": "Boolean",
+                      "ReturnDesc": "设置成功返回true，失败返回false",
+                      "Paras": [
+                                {
+                                "ID": "nickName",
+                                "Name": "昵称",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 0,
+                                "DefaultValue": "",
+                                "Description": ""
+                                },
+                                {
+                                "ID": "headPortrait",
+                                "Name": "头像",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 0,
+                                "DefaultValue": "",
+                                "Description": "支持本地文件,data:// source:// 打头的URI格式和网络图片,不写为默认头像"
+                                }
+                                ]
+                      },
+                      {
+                      "ID": "sendTextMessage",
+                      "Name": "发送文本消息",
+                      "Description": "",
+                      "ReturnType": "Boolean",
+                      "ReturnDesc": "发送成功返回true，失败返回false",
+                      "Paras": [
+                                {
+                                "ID": "text",
+                                "Name": "文本消息",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 1,
+                                "DefaultValue": "",
+                                "Description": ""
+                                },
+                                {
+                                "ID": "targetId",
+                                "Name": "目标Id",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 1,
+                                "DefaultValue": "",
+                                "Description": ""
+                                },
+                                {
+                                "ID": "conversationType",
+                                "Name": "会话类型",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 1,
+                                "DefaultValue": "",
+                                "Description": "目前支持单聊(private)和群聊(group)"
+                                },
+                                {
+                                "ID": "pushContent",
+                                "Name": "远程推送内容",
+                                "Type": "String",
+                                "Type_JavaScript": "String",
+                                "Required": 0,
+                                "DefaultValue": "",
+                                "Description": "当接收方离线并允许远程推送时，会收到远程推送。pushContent，用于显示远程推送内容；如果pushContent不传，会使用默认的推送格式进行远程推送。"
+                                }
+                                ]
+                      }
+                      ]
+}
